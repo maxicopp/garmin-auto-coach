@@ -35,3 +35,17 @@ separate reviewable PR. CI must pass before merging this change into `main`.
 
 Golden regression snapshots and offline unit tests must pass unchanged. Never
 regenerate the approved golden baseline just to make a refactor pass.
+
+## Reporting boundary (third incremental refactor)
+
+- `reporting.py` renders weekly summaries and coach context from normalized
+  inputs. It only imports pure normalization helpers; callers supply the
+  reference date explicitly. No filesystem, API, or network access is required.
+- `core.py` retains the same public `fmt`, `week_summary`, and `coach_context`
+  signatures, and resolves the default date using the original `local_today`
+  function before delegating to `reporting.py`.
+- `core.generate_exports`, the existing timezone, CSV/JSON serialization,
+  training formulas, FIT analysis, and Garmin synchronization stay untouched.
+
+All committed golden regression snapshots must match exactly; do not regenerate
+snapshots to make a refactor pass. Review the PR and its CI status before merge.
