@@ -1,0 +1,41 @@
+.venv/
+.env
+private-data/
+exports/
+*.log
+__pycache__/
+.pytest_cache/
+.DS_Store
+*.pyc
+
+# Credenciales y datos privados
+.env
+.env.*
+private-data/
+exports/
+data/
+secrets/
+credentials/
+*.pem
+*.key
+*.p12
+*.pfx
+*.token
+
+# Entornos y archivos temporales
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.DS_Store
+*.log
+
+# Backups y datos deportivos
+code-backups/
+*.zip
+*.fit
+*.csv
+*.db
+*.sqlite
