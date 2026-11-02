@@ -60,22 +60,15 @@ def coach_context(activities: list[dict], wellness: list[dict], goals: str, toda
 
 
 def generate_exports(private_dir: Path, export_dir: Path, goals: str = '', today: date | None = None) -> dict:
-    activities = sorted(load_rows(private_dir / 'activities', activity_row), key=lambda r: (r.get('date',''), str(r.get('activity_id',''))))
-    wellness = sorted(load_rows(private_dir / 'wellness', wellness_row), key=lambda r: r.get('date',''))
-    csv_output(export_dir / 'activities.csv', ACTIVITY_COLUMNS, activities)
-    csv_output(export_dir / 'wellness.csv', WELLNESS_COLUMNS, wellness)
-    atomic_text(export_dir / 'weekly_summary.md', week_summary(activities, today=today))
-    atomic_text(export_dir / 'coach_context.md', coach_context(activities, wellness, goals, today=today))
-    # Analytical outputs. All series are reduced to aggregates; no GPS position is shared.
-    from .fit_analysis import fit_reports, FIT_FIELDS, LAP_FIELDS
-    from .analytics import compute, make_report, WEEKLY_COLUMNS
-    fit_data, laps = fit_reports(private_dir, activities)
-    csv_output(export_dir / 'fit_metrics.csv', FIT_FIELDS, fit_data)
-    csv_output(export_dir / 'laps.csv', LAP_FIELDS, laps)
-    metrics = compute(activities, wellness, fit_data, today or local_today())
-    csv_output(export_dir / 'weekly_metrics.csv', WEEKLY_COLUMNS, metrics['weekly'])
-    atomic_json(export_dir / 'training_metrics.json', metrics)
-    atomic_text(export_dir / 'training_analysis.md', make_report(metrics, goals))
-    index = {'generated_at': datetime.now(LOCAL_TZ).isoformat(), 'activities': len(activities), 'wellness_days': len(wellness), 'source': 'Garmin Connect Personal API', 'privacy': 'No GPS track points in exported files', 'version': '0.2', 'fit_ok': sum(r.get('fit_status') == 'ok' for r in fit_data), 'fit_missing': sum(r.get('fit_status') == 'not_downloaded' for r in fit_data)}
-    atomic_json(export_dir / 'latest_sync.json', index)
-    return index
+    """Backward-compatible entrypoint for the offline export pipeline."""
+    from .export_service import ExportDependencies, generate_exports as run_exports
+
+    dependencies = ExportDependencies(
+        activity_columns=ACTIVITY_COLUMNS,
+        wellness_columns=WELLNESS_COLUMNS,
+        local_today=local_today,
+        now=lambda: datetime.now(LOCAL_TZ),
+        week_summary=week_summary,
+        coach_context=coach_context,
+    )
+    return run_exports(private_dir, export_dir, goals=goals, today=today, deps=dependencies)

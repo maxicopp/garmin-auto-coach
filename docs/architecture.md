@@ -49,3 +49,18 @@ regenerate the approved golden baseline just to make a refactor pass.
 
 All committed golden regression snapshots must match exactly; do not regenerate
 snapshots to make a refactor pass. Review the PR and its CI status before merge.
+
+## Export orchestration boundary (fourth incremental refactor)
+
+- `export_service.py` coordinates offline input normalization, FIT analysis,
+  calculations, and CSV/JSON/Markdown output. It does not import `core.py`
+  or make API requests.
+- `core.generate_exports` remains the public compatibility entrypoint with the
+  same signature and delegates to the service via explicit dependencies.
+- The original date/time providers and public report functions are injected to
+  preserve report metadata, golden bytes, and existing test mock points.
+- No change to `sync.py`, `fit_analysis.py`, `analytics.py`, CLI commands, Garmin
+  credentials, private data, scheduled jobs, or committed snapshots.
+
+Merge only after offline tests and CI pass; never regenerate golden snapshots
+merely to accommodate a refactor.
