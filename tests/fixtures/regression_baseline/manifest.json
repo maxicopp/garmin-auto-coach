@@ -1,0 +1,16 @@
+{
+  "description": "Synthetic Garmin Auto Coach baseline. Generated once; review before updating.",
+  "files": {
+    "activities.csv": "9cb45ce3f75786e75bea5179a6e04ce810f6ea45728c242a3c1c25cc2bd87027",
+    "coach_context.md": "c415ea7d3d5043a3787ab027adab88c488e82f48b7751dff16e2b63bd2c4d71a",
+    "fit_metrics.csv": "21f5c1ec43f0ee766f64ed61320b1e634c072efa590c3f524370b62db1347d0a",
+    "laps.csv": "b3e6539ef2c18879ec03bf564a1b2490abfbd7710431a407b5915d1071707bde",
+    "latest_sync.json": "a57d0ba0bafbb7d3593e1e42ce00cc3c12bb61a5827a83d163c52d1a80522d1b",
+    "training_analysis.md": "0811f33e57df667588c4a7ed0a57a7c0fc410e19014924a9a5a92f2c8f143aa5",
+    "training_metrics.json": "50c5791e80f21e24b2164a749b29f090ff23faa5787f8681d4001ec45201fe01",
+    "weekly_metrics.csv": "1d49b3637a33cbea1aeb87553296eda508396b2ab2bd8d91c9c9f7d5be0e826d",
+    "weekly_summary.md": "625e049e65105baadf6cf1c4d40d2ebb91324c6f96ca4d06e366e50d0cff9d5b",
+    "wellness.csv": "f0e6d32e5ff024da52063281a5ad3f41a638342ac73162050b579d31b7298932"
+  },
+  "reference_date": "2026-10-29"
+}

@@ -1,0 +1,10 @@
+{
+  "activities": 11,
+  "fit_missing": 10,
+  "fit_ok": 1,
+  "generated_at": "2026-10-29T12:00:00-03:00",
+  "privacy": "No GPS track points in exported files",
+  "source": "Garmin Connect Personal API",
+  "version": "0.2",
+  "wellness_days": 3
+}

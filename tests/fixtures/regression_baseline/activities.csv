@@ -1,0 +1,12 @@
+date,activity_id,name,type,distance_km,duration_min,moving_min,pace_min_km,average_hr_bpm,max_hr_bpm,ascent_m,descent_m,average_cadence_spm,aerobic_te,anaerobic_te,average_power_w
+2026-08-24,10001,Synthetic activity 10001,running,6.5,40.0,39.5,6.15,141.0,161.0,30.0,,,3.1,0.4,
+2026-08-31,10002,Synthetic activity 10002,running,8.2,51.7,51.2,6.3,145.0,165.0,50.0,,,3.1,0.4,
+2026-09-07,10003,Synthetic activity 10003,running,10.5,70.0,69.5,6.67,148.0,168.0,70.0,,,3.1,0.4,
+2026-09-14,10004,Synthetic activity 10004,running,9.5,63.3,62.8,6.67,147.0,167.0,40.0,,,3.1,0.4,
+2026-09-21,10005,Synthetic activity 10005,trail_running,14.0,105.0,104.5,7.5,153.0,173.0,500.0,,,3.1,0.4,
+2026-09-28,10006,Synthetic activity 10006,running,12.5,81.7,81.2,6.53,147.0,167.0,80.0,,,3.1,0.4,
+2026-10-05,10007,Synthetic activity 10007,running,16.0,103.3,102.8,6.46,149.0,169.0,65.0,,,3.1,0.4,
+2026-10-12,10008,Synthetic activity 10008,trail_running,18.5,136.7,136.2,7.39,155.0,175.0,820.0,,,3.1,0.4,
+2026-10-19,10009,Synthetic activity 10009,running,11.0,71.7,71.2,6.52,146.0,166.0,45.0,,,3.1,0.4,
+2026-10-22,10011,Synthetic activity 10011,hiking,20.0,233.3,232.8,11.67,110.0,130.0,1000.0,,,3.1,0.4,
+2026-10-27,10010,Synthetic activity 10010,running,5.0,28.5,28.0,5.7,158.0,178.0,20.0,,,3.1,0.4,

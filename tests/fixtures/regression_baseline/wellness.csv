@@ -1,0 +1,4 @@
+date,sleep_hours,sleep_score,hrv_last_night_ms,hrv_weekly_avg_ms,hrv_status,body_battery_charged,body_battery_drained
+2026-10-26,7.5,82.0,51.2,50.2,BALANCED,65.0,50.0
+2026-10-27,6.0,70.0,48.0,47.0,BALANCED,47.0,60.0
+2026-10-28,,,,,,52.0,41.0

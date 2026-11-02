@@ -1,0 +1,12 @@
+activity_id,fit_status,fit_records,fit_duration_min,fit_hr_coverage_pct,fit_moving_hr_samples,fit_laps,fit_mean_hr_bpm,fit_median_cadence_spm,fit_drift_pct,fit_drift_note
+10001,not_downloaded,,,,,,,,,
+10002,not_downloaded,,,,,,,,,
+10003,not_downloaded,,,,,,,,,
+10004,not_downloaded,,,,,,,,,
+10005,not_downloaded,,,,,,,,,
+10006,not_downloaded,,,,,,,,,
+10007,ok,2500,103.3,99.2,2480,1,149.0,82.0,3.2,Synthetic cache only
+10008,not_downloaded,,,,,,,,,
+10009,not_downloaded,,,,,,,,,
+10011,not_downloaded,,,,,,,,,
+10010,not_downloaded,,,,,,,,,

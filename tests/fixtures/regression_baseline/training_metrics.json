@@ -1,0 +1,220 @@
+{
+  "activity_count": 11,
+  "caveats": [
+    "Kilometraje sólo de running/trail; otras actividades no cuentan como carrera.",
+    "La semana actual es parcial y se excluye de comparaciones entre semanas completas.",
+    "Los cambios de kilometraje y porcentaje de fondo NO diagnostican riesgo de lesión.",
+    "Un resumen de sesión no permite atribuir mejoras de ritmo/FC a eficiencia: terreno, clima y esfuerzo difieren.",
+    "HRV se interpreta frente a la línea base personal; no se diagnostica recuperación con un valor aislado.",
+    "Deriva FIT sólo se estima con cobertura y terreno suficientes; no equivale a umbral aeróbico.",
+    "Sin zonas de FC individuales confirmadas no se asignan zonas de entrenamiento."
+  ],
+  "first_run": "2026-08-24",
+  "fit_drift_activities": 1,
+  "fit_drift_values": [
+    {
+      "activity_id": "10007",
+      "drift_pct": 3.2
+    }
+  ],
+  "fit_status_counts": {
+    "not_downloaded": 10,
+    "ok": 1
+  },
+  "high_long_run_share_weeks": [
+    "2026-09-28",
+    "2026-10-05",
+    "2026-10-12",
+    "2026-10-19"
+  ],
+  "hrv_avg_ms_28d": 49.6,
+  "hrv_nights_available_28d": 2,
+  "hrv_statuses_28d": {
+    "BALANCED": 2
+  },
+  "last4_complete_weeks_count": 4,
+  "last4_weekly_ascent_m": 1010.0,
+  "last4_weekly_avg_km": 14.5,
+  "last4_weekly_long_share_avg_pct": 100.0,
+  "longest_run_km": 18.5,
+  "prev4_complete_weeks_count": 4,
+  "previous4_weekly_avg_km": 10.55,
+  "recent28_ascent_m": 950.0,
+  "recent28_km": 50.5,
+  "recent7_km": 5.0,
+  "reference_date": "2026-10-29",
+  "run_count": 10,
+  "sample_best_10k": null,
+  "sample_best_5k": {
+    "date": "2026-10-27",
+    "distance_km": 5.0,
+    "minutes": 28.5
+  },
+  "sleep_avg_hours_28d": 6.75,
+  "sleep_below6_nights_28d": 0,
+  "sleep_nights_available_28d": 2,
+  "sleep_score_avg_28d": 76.0,
+  "total_run_km": 111.7,
+  "weekly": [
+    {
+      "ascent_m": 0,
+      "complete": true,
+      "distance_km": 0,
+      "duration_min": 0,
+      "km_change_vs_previous_pct": null,
+      "long_run_share_pct": null,
+      "longest_km": 0,
+      "sessions": 0,
+      "week_start": "2026-07-27"
+    },
+    {
+      "ascent_m": 0,
+      "complete": true,
+      "distance_km": 0,
+      "duration_min": 0,
+      "km_change_vs_previous_pct": null,
+      "long_run_share_pct": null,
+      "longest_km": 0,
+      "sessions": 0,
+      "week_start": "2026-08-03"
+    },
+    {
+      "ascent_m": 0,
+      "complete": true,
+      "distance_km": 0,
+      "duration_min": 0,
+      "km_change_vs_previous_pct": null,
+      "long_run_share_pct": null,
+      "longest_km": 0,
+      "sessions": 0,
+      "week_start": "2026-08-10"
+    },
+    {
+      "ascent_m": 0,
+      "complete": true,
+      "distance_km": 0,
+      "duration_min": 0,
+      "km_change_vs_previous_pct": null,
+      "long_run_share_pct": null,
+      "longest_km": 0,
+      "sessions": 0,
+      "week_start": "2026-08-17"
+    },
+    {
+      "ascent_m": 30.0,
+      "complete": true,
+      "distance_km": 6.5,
+      "duration_min": 40.0,
+      "km_change_vs_previous_pct": null,
+      "long_run_share_pct": 100.0,
+      "longest_km": 6.5,
+      "sessions": 1,
+      "week_start": "2026-08-24"
+    },
+    {
+      "ascent_m": 50.0,
+      "complete": true,
+      "distance_km": 8.2,
+      "duration_min": 51.7,
+      "km_change_vs_previous_pct": 26.2,
+      "long_run_share_pct": 100.0,
+      "longest_km": 8.2,
+      "sessions": 1,
+      "week_start": "2026-08-31"
+    },
+    {
+      "ascent_m": 70.0,
+      "complete": true,
+      "distance_km": 10.5,
+      "duration_min": 70.0,
+      "km_change_vs_previous_pct": 28.0,
+      "long_run_share_pct": 100.0,
+      "longest_km": 10.5,
+      "sessions": 1,
+      "week_start": "2026-09-07"
+    },
+    {
+      "ascent_m": 40.0,
+      "complete": true,
+      "distance_km": 9.5,
+      "duration_min": 63.3,
+      "km_change_vs_previous_pct": -9.5,
+      "long_run_share_pct": 100.0,
+      "longest_km": 9.5,
+      "sessions": 1,
+      "week_start": "2026-09-14"
+    },
+    {
+      "ascent_m": 500.0,
+      "complete": true,
+      "distance_km": 14.0,
+      "duration_min": 105.0,
+      "km_change_vs_previous_pct": 47.4,
+      "long_run_share_pct": 100.0,
+      "longest_km": 14.0,
+      "sessions": 1,
+      "week_start": "2026-09-21"
+    },
+    {
+      "ascent_m": 80.0,
+      "complete": true,
+      "distance_km": 12.5,
+      "duration_min": 81.7,
+      "km_change_vs_previous_pct": -10.7,
+      "long_run_share_pct": 100.0,
+      "longest_km": 12.5,
+      "sessions": 1,
+      "week_start": "2026-09-28"
+    },
+    {
+      "ascent_m": 65.0,
+      "complete": true,
+      "distance_km": 16.0,
+      "duration_min": 103.3,
+      "km_change_vs_previous_pct": 28.0,
+      "long_run_share_pct": 100.0,
+      "longest_km": 16.0,
+      "sessions": 1,
+      "week_start": "2026-10-05"
+    },
+    {
+      "ascent_m": 820.0,
+      "complete": true,
+      "distance_km": 18.5,
+      "duration_min": 136.7,
+      "km_change_vs_previous_pct": 15.6,
+      "long_run_share_pct": 100.0,
+      "longest_km": 18.5,
+      "sessions": 1,
+      "week_start": "2026-10-12"
+    },
+    {
+      "ascent_m": 45.0,
+      "complete": true,
+      "distance_km": 11.0,
+      "duration_min": 71.7,
+      "km_change_vs_previous_pct": -40.5,
+      "long_run_share_pct": 100.0,
+      "longest_km": 11.0,
+      "sessions": 1,
+      "week_start": "2026-10-19"
+    },
+    {
+      "ascent_m": 20.0,
+      "complete": false,
+      "distance_km": 5.0,
+      "duration_min": 28.5,
+      "km_change_vs_previous_pct": null,
+      "long_run_share_pct": 100.0,
+      "longest_km": 5.0,
+      "sessions": 1,
+      "week_start": "2026-10-26"
+    }
+  ],
+  "weekly_jump_gt25_weeks": [
+    "2026-08-31",
+    "2026-09-07",
+    "2026-09-21",
+    "2026-10-05"
+  ]
+}
