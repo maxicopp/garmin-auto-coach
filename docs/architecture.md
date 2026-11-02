@@ -23,3 +23,15 @@ operations from activity normalization and report generation.
 
 The next extraction (normalization, reports and orchestration) should be a
 separate reviewable PR. CI must pass before merging this change into `main`.
+
+## Normalization boundary (second incremental refactor)
+
+- `normalization.py`: pure helpers for Garmin activity and wellness data,
+  numeric conversion, dates, and running classification. It depends only on
+  Python's standard library.
+- `core.py`: re-exports the same helper names for backward compatibility.
+  Report generation, source files, CLI options, and output formats are unchanged.
+- `storage.py`: remains responsible for local persistence and serialization.
+
+Golden regression snapshots and offline unit tests must pass unchanged. Never
+regenerate the approved golden baseline just to make a refactor pass.
