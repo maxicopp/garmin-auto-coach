@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """Read-only health diagnostics for a local Garmin Auto Coach installation.
 
-Never reads .env contents, Garmin activity files, FIT archives, or credentials.
+Reads configured data-directory values from .env without printing credentials.
+Never reads Garmin activity files, FIT archives, or private workout content.
 Does not access Garmin, change any files, or print activity identifiers.
 """
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import plistlib
+import subprocess
 import sys
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -71,9 +74,44 @@ def check_agent(agent_path: Path, expected_runner: Path) -> dict[str, str]:
     return result("launchd", "ok", "07:00 scheduled job points to this project")
 
 
+
+def configured_data_directories(root: Path) -> tuple[Path, Path]:
+    """Resolve the same directory settings used by the CLI without printing values.
+
+    The runner changes the working directory to the repository root. Relative
+    values from .env are therefore resolved against that root.
+    """
+    import os
+    from dotenv import dotenv_values
+
+    settings = dotenv_values(root / ".env") if (root / ".env").is_file() else {}
+
+    def directory(name: str, fallback: str) -> Path:
+        value = os.environ[name] if name in os.environ else settings.get(name)
+        path = Path(fallback if value is None else value).expanduser()
+        return path if path.is_absolute() else root / path
+
+    return directory("GARMIN_PRIVATE_DIR", "private-data"), directory("GARMIN_EXPORT_DIR", "exports")
+
+
+def check_agent_loaded() -> dict[str, str]:
+    """Query the user's launchd registry, without displaying command output."""
+    try:
+        completed = subprocess.run(
+            ["launchctl", "print", f"gui/{os.getuid()}/com.local.garmin-auto-coach"],
+            capture_output=True, text=True, check=False, timeout=5,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return result("launchd_loaded", "warning", "Could not inspect active launchd registration")
+    if completed.returncode:
+        return result("launchd_loaded", "warning", "Scheduled job is not loaded in this user session")
+    return result("launchd_loaded", "ok", "Scheduled job is registered with launchd")
+
+
 def audit(root: Path, agent_path: Path | None = None, today: date | None = None, *, check_launchd: bool = True) -> list[dict[str, str]]:
     root = root.expanduser().resolve()
     today = today or datetime.now(LOCAL_TZ).date()
+    private_dir, export_dir = configured_data_directories(root)
     checks = [
         result("credentials_file", "ok" if (root / ".env").is_file() else "warning",
                "Local configuration file is present" if (root / ".env").is_file() else "Local configuration file is missing"),
@@ -81,12 +119,14 @@ def audit(root: Path, agent_path: Path | None = None, today: date | None = None,
                "Python environment is present" if (root / ".venv" / "bin" / "python").is_file() else "Python environment is missing"),
         result("daily_runner", "ok" if (root / "scripts" / "run_daily.sh").is_file() else "error",
                "Daily runner is present" if (root / "scripts" / "run_daily.sh").is_file() else "Daily runner is missing"),
-        check_recent_date(root / "private-data" / "state.json", "last_success", "sync_state", today),
-        check_recent_date(root / "exports" / "latest_sync.json", "generated_at", "exports", today, is_timestamp=True),
+        check_recent_date(private_dir / "state.json", "last_success", "sync_state", today),
+        check_recent_date(export_dir / "latest_sync.json", "generated_at", "exports", today, is_timestamp=True),
     ]
     if check_launchd:
         agent = agent_path or Path.home() / "Library" / "LaunchAgents" / AGENT_NAME
         checks.append(check_agent(agent, root / "scripts" / "run_daily.sh"))
+        if sys.platform == "darwin" and agent_path is None:
+            checks.append(check_agent_loaded())
     return checks
 
 
