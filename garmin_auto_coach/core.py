@@ -16,6 +16,9 @@ from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
 
+# Backward-compatible re-exports; callers of core.py keep working.
+from .storage import (atomic_json, atomic_text, json_file, digest, load_rows, csv_output)
+
 LOCAL_TZ = ZoneInfo('America/Argentina/Buenos_Aires')
 
 ACTIVITY_COLUMNS = [
@@ -35,27 +38,12 @@ def local_today() -> date:
     return datetime.now(LOCAL_TZ).date()
 
 
-def atomic_json(path: Path, value: Any) -> None:
-    atomic_text(path, json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + '\n')
 
 
-def atomic_text(path: Path, text: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_name(path.name + f'.{os.getpid()}.tmp')
-    try:
-        tmp.write_text(text, encoding='utf-8')
-        os.replace(tmp, path)
-    finally:
-        tmp.unlink(missing_ok=True)
 
 
-def json_file(path: Path) -> Any:
-    return json.loads(path.read_text(encoding='utf-8'))
 
 
-def digest(value: Any) -> str:
-    payload = json.dumps(value, ensure_ascii=False, sort_keys=True, default=str).encode('utf-8')
-    return hashlib.sha256(payload).hexdigest()
 
 
 def find_key(obj: Any, *keys: str) -> Any:
@@ -181,29 +169,8 @@ def wellness_row(item: dict) -> dict:
     }
 
 
-def load_rows(directory: Path, transform) -> list[dict]:
-    rows = []
-    if directory.exists():
-        for path in directory.glob('*.json'):
-            try:
-                rows.append(transform(json_file(path)))
-            except (ValueError, TypeError, OSError, KeyError) as exc:
-                print(f'Advertencia: no se pudo leer {path.name}: {exc}')
-    return rows
 
 
-def csv_output(path: Path, columns: list[str], rows: list[dict]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_name(path.name + f'.{os.getpid()}.tmp')
-    try:
-        with tmp.open('w', encoding='utf-8', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=columns, extrasaction='ignore')
-            writer.writeheader()
-            for row in rows:
-                writer.writerow({key: '' if row.get(key) is None else row.get(key) for key in columns})
-        os.replace(tmp, path)
-    finally:
-        tmp.unlink(missing_ok=True)
 
 
 def is_running(row: dict) -> bool:
